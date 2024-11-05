@@ -1,4 +1,8 @@
-# todolist
+# Todo List
+
+### $\mathbb{\color{teal}{the \ goal \ is \ to \ get \ familiar \ with \ vue.js  }}$
+
+../src/assets/logo.png
 
 ## Project setup
 ```
