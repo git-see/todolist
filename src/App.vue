@@ -1,14 +1,24 @@
 <template>
-<h1>My todo list</h1>
+  <h1>My todo list</h1>
+  <Form @add="saveTask" />
 </template>
 
 <script>
-
+import Form from "@/components/Form";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-  }
-}
+    Form,
+  },
+  setup() {
+    const saveTask = function (data) {
+      console.log("App | saveTask() | data", data);
+    };
+    return {
+      saveTask,
+    };
+  },
+};
 </script>
 
 <style>
