@@ -8,7 +8,11 @@
         <button @click="editTask(taskName)" id="editButton">&#x2B6F;</button>
       </div>
       <span v-if="taskToEdit !== null && taskToEdit.id === taskName.id">
-        <input type="text" v-model="taskToEdit.task" @keypress.enter="saveTask" />
+        <input
+          type="text"
+          v-model="taskToEdit.task"
+          @keypress.enter="saveTask"
+        />
         <button @click="saveTask">Save</button>
       </span>
       <span v-else>{{ taskName.task }}</span>
@@ -65,11 +69,11 @@ ul {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 20px;
+  margin-bottom:80px;
 }
 
 li {
