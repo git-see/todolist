@@ -1,7 +1,7 @@
 <template>
   <h1>My todo list</h1>
   <Form @add="saveTask" />
-  <TasksList :tasks="tasks" @delete-task="deleteTask" />
+  <TasksList :tasks="tasks" @delete-task="deleteTask" @edit-task="editTask" />
 </template>
 
 <script>
@@ -17,20 +17,27 @@ export default {
   setup() {
     let tasks = ref([]);
 
+    const deleteTask = function (taskName) {
+      console.log("App | deleteTask() | taskName", taskName);
+      tasks.value = tasks.value.filter((t) => t.id !== taskName.id);
+    };
+
+    const editTask = function (taskName) {
+      tasks.value = tasks.value.map((t) =>
+        t.id !== taskName.id ? t : taskName
+      );
+    };
+
     const saveTask = function (data) {
       console.log("App | saveTask() | data", data);
       tasks.value = [...tasks.value, { task: data, id: Date.now() }];
       console.log("App | saveTask() | tasks.value", tasks.value);
     };
 
-    const deleteTask = function (taskName) {
-      console.log("App | deleteTask() | taskName", taskName);
-      tasks.value = tasks.value.filter((t) => t.id !== taskName.id);
-    };
-
     return {
-      saveTask,
       deleteTask,
+      editTask,
+      saveTask,
       tasks,
     };
   },
