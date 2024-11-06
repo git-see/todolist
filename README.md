@@ -7,6 +7,9 @@ Tips:
 - Installing the Vetur extension makes it easier to type with Vue.js
 - package.json -> "eslintConfig" -> "rules": {"vue/multi-word-component-names": "off"}
 
+![vue](https://github.com/user-attachments/assets/31bedfeb-046c-4099-85e9-d408c226dc62)
+
+
 ## Project setup
 
 ```
