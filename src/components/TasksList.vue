@@ -3,15 +3,23 @@
   {{ tasks.length }} task{{ tasks.length > 1 ? "s" : "" }}
   <ul>
     <li v-for="taskName in tasks" :key="taskName.id">
-      <button @click="deleteTask(taskName)" id="deleteButton">X</button>
-      {{ taskName.task }}
+      <div id="buttonsContainer">
+        <button @click="deleteTask(taskName)" id="deleteButton">X</button>
+        <button @click="editTask(taskName)" id="editButton">&#x2B6F;</button>
+      </div>
+      <span v-if="taskToEdit !== null && taskToEdit.id === taskName.id">
+        <input type="text" v-model="taskToEdit.task" @keypress.enter="saveTask" />
+        <button @click="saveTask">Save</button>
+      </span>
+      <span v-else>{{ taskName.task }}</span>
     </li>
   </ul>
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
-  emits: ["delete-task"],
+  emits: ["delete-task", "edit-task"],
   props: {
     tasks: {
       type: Array,
@@ -19,11 +27,25 @@ export default {
     },
   },
   setup(props, { emit }) {
+    let taskToEdit = ref(null);
+
     let deleteTask = function (taskName) {
       emit("delete-task", taskName);
     };
+
+    let editTask = function (taskName) {
+      taskToEdit.value = taskName;
+    };
+
+    let saveTask = function () {
+      emit("edit-task", taskToEdit.value);
+      taskToEdit.value = null;
+    };
     return {
       deleteTask,
+      editTask,
+      saveTask,
+      taskToEdit,
     };
   },
 };
@@ -65,11 +87,16 @@ li {
   overflow-wrap: break-word;
 }
 
-#deleteButton {
+#buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#deleteButton,
+#editButton {
   padding: 0.5em;
   width: 30px;
-  display: block;
-  background-color: orangered;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
@@ -77,7 +104,19 @@ li {
   transition: background-color 0.3s ease-in-out;
 }
 
+#deleteButton {
+  background-color: orangered;
+}
+
+#editButton {
+  background-color: #45b342;
+}
+
 #deleteButton:hover {
   background-color: red;
+}
+
+#editButton:hover {
+  background-color: #0e6b0a;
 }
 </style>
