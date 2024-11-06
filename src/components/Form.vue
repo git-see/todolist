@@ -31,11 +31,11 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2rem;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 50%;
+  width: 800px;
+  max-width: 100%;
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;

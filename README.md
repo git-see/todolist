@@ -1,4 +1,4 @@
-# Todo List
+# To Do List
 
 ### $\mathbb{\color{teal}{the \ goal \ is \ to \ get \ familiar \ with \ Vue.js  }}$
 
@@ -7,7 +7,6 @@ Tips:
 - Installing the Vetur extension makes it easier to type with Vue.js
 - package.json -> "eslintConfig" -> "rules": {"vue/multi-word-component-names": "off"}
 
-(/logo.png)
 
 ## Project setup
 

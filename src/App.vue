@@ -1,5 +1,5 @@
 <template>
-  <h1>My todo list</h1>
+  <h1>My To Do List</h1>
   <Form @add="saveTask" />
   <TasksList :tasks="tasks" @delete-task="deleteTask" @edit-task="editTask" />
 </template>
@@ -55,6 +55,6 @@ export default {
 
 h1 {
   font-size: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 </style>
