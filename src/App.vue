@@ -1,7 +1,7 @@
 <template>
   <h1>My todo list</h1>
   <Form @add="saveTask" />
-  <TasksList :tasks="tasks" />
+  <TasksList :tasks="tasks" @delete-task="deleteTask" />
 </template>
 
 <script>
@@ -22,8 +22,15 @@ export default {
       tasks.value = [...tasks.value, { task: data, id: Date.now() }];
       console.log("App | saveTask() | tasks.value", tasks.value);
     };
+
+    const deleteTask = function (taskName) {
+      console.log("App | deleteTask() | taskName", taskName);
+      tasks.value = tasks.value.filter((t) => t.id !== taskName.id);
+    };
+
     return {
       saveTask,
+      deleteTask,
       tasks,
     };
   },
@@ -43,6 +50,4 @@ h1 {
   font-size: 40px;
   margin-bottom: 20px;
 }
-
-
 </style>

@@ -2,17 +2,29 @@
   <h3>All my tasks to do</h3>
   {{ tasks.length }} task{{ tasks.length > 1 ? "s" : "" }}
   <ul>
-    <li v-for="taskName in tasks" :key="taskName.id">{{ taskName.task }}</li>
+    <li v-for="taskName in tasks" :key="taskName.id">
+      <button @click="deleteTask(taskName)" id="deleteButton">X</button>
+      {{ taskName.task }}
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
+  emits: ["delete-task"],
   props: {
     tasks: {
       type: Array,
       required: true,
     },
+  },
+  setup(props, { emit }) {
+    let deleteTask = function (taskName) {
+      emit("delete-task", taskName);
+    };
+    return {
+      deleteTask,
+    };
   },
 };
 </script>
@@ -53,5 +65,19 @@ li {
   overflow-wrap: break-word;
 }
 
+#deleteButton {
+  padding: 0.5em;
+  width: 30px;
+  display: block;
+  background-color: orangered;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: background-color 0.3s ease-in-out;
+}
 
+#deleteButton:hover {
+  background-color: red;
+}
 </style>
